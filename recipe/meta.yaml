@@ -1,34 +1,36 @@
 {% set name = "flake8-colors" %}
-{% set version = "0.1.6" %}
+{% set version = "0.1.9" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 508fcf6efc15826f2146b42172ab41999555e07af43fcfb3e6a28ad596189560
+  sha256: 35a5483a7d156d0438b402faea2fefe45b411571ce5dc93ba28670fd9429cc46
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script: {{ PYTHON }} -m pip install . -vv
   noarch: python
   entry_points:
     - flake8-colors = flake8_colors:ColorFormatter
 
 requirements:
   host:
-    - flake8 >3.0.0
     - pip
-    - python
-    - setuptools
+    - python >=3.6
   run:
     - flake8 >3.0.0
-    - python
+    - python  >=3.6
 
 test:
   imports:
     - flake8_colors
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/and3rson/flake8-colors
