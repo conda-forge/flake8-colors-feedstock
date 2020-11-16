@@ -1,17 +1,17 @@
 {% set name = "flake8-colors" %}
-{% set version = "0.1.6" %}
+{% set version = "0.1.8" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 508fcf6efc15826f2146b42172ab41999555e07af43fcfb3e6a28ad596189560
+  sha256: 7a2c14ace214e22ba07870e25efc4ccd640f21227de9820482ea73b68343ee96
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '
   noarch: python
   entry_points:
     - flake8-colors = flake8_colors:ColorFormatter
