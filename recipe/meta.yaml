@@ -11,24 +11,26 @@ source:
 
 build:
   number: 0
-  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '
+  script: {{ PYTHON }} -m pip install . -vv
   noarch: python
   entry_points:
     - flake8-colors = flake8_colors:ColorFormatter
 
 requirements:
   host:
-    - flake8 >3.0.0
     - pip
-    - python
-    - setuptools
+    - python >=3.6
   run:
     - flake8 >3.0.0
-    - python
+    - python  >=3.6
 
 test:
   imports:
     - flake8_colors
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/and3rson/flake8-colors
