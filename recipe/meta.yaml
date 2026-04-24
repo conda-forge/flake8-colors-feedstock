@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 35a5483a7d156d0438b402faea2fefe45b411571ce5dc93ba28670fd9429cc46
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
   entry_points:
@@ -19,16 +19,17 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - flake8 >3.0.0
-    - python  >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
     - flake8_colors
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
